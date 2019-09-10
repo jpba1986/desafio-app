@@ -13,8 +13,7 @@ export class ForecastListComponent implements OnInit {
   constructor(private forecastService: ForecastService) { }
 
   ngOnInit() {
-    this.forecasts = this.forecastService.getForecast();
-    //console.log(this.forecasts);
+    console.log( this.forecastService.getForecast2());
   }
 
 }
