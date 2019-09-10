@@ -7,20 +7,19 @@ import { AppComponent } from './app.component';
 import { ForecastComponent } from './pages/forecast/forecast.component';
 import { ForecastListComponent } from './pages/forecast/forecast-list/forecast-list.component';
 import { ForecastDetailComponent } from './pages/forecast/forecast-detail/forecast-detail.component';
+import { ForecastItemComponent } from './pages/forecast/forecast-item/forecast-item.component';
 
 const appRoutes: Routes=[
-  { path: '', redirectTo: '/', pathMatch:'full'},
-  { path: 'forecast', component: ForecastComponent,
-    children:[
-      {path: 'id', component:ForecastDetailComponent}
-    ]
+  { path: '', redirectTo: '/forecast', pathMatch:'full'},
+  { path: 'forecast', component: ForecastComponent
   }
 ];
 @NgModule({
   declarations: [
     AppComponent,
     ForecastComponent,
-    ForecastListComponent
+    ForecastListComponent,
+    ForecastItemComponent
   ],
   imports: [
     BrowserModule,
