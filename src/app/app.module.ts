@@ -6,7 +6,6 @@ import { Routes, RouterModule} from '@angular/router';
 import { AppComponent } from './app.component';
 import { ForecastComponent } from './pages/forecast/forecast.component';
 import { ForecastListComponent } from './pages/forecast/forecast-list/forecast-list.component';
-import { ForecastDetailComponent } from './pages/forecast/forecast-detail/forecast-detail.component';
 import { ForecastItemComponent } from './pages/forecast/forecast-item/forecast-item.component';
 
 const appRoutes: Routes=[
