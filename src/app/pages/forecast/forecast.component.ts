@@ -8,10 +8,29 @@ import { ForecastService } from 'src/app/shared/services/forecast.service';
 })
 export class ForecastComponent implements OnInit {
 
+  isLoad= false;
+
   constructor(private forecastService: ForecastService) { }
 
   ngOnInit() {
-    this.forecastService.setStartlocations().subscribe();
+    this.forecastService.getKeys()
+    .subscribe(
+      (data: any) =>{
+        if (data.data.length > 0){          
+          this.isLoad = true;
+        }        
+      }, error =>{
+        throw error;
+      });
+
+  }
+
+  onLoad(){
+        this.forecastService.setStartlocations().subscribe(
+          () =>{
+            this.isLoad = true;
+          }
+        );
   }
 
 }

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ForecastService } from 'src/app/shared/services/forecast.service';
-import { map } from 'rxjs/operators';
 import { Forecast } from 'src/app/shared/models/forecast.model';
 
 

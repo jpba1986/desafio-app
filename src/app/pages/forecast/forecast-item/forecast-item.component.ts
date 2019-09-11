@@ -8,7 +8,7 @@ import { ForecastService } from 'src/app/shared/services/forecast.service';
   styleUrls: ['./forecast-item.component.css']
 })
 export class ForecastItemComponent implements OnInit  {
-
+  forecasts: Forecast[] = [];
   @Input() forecast: Forecast;
 
   constructor(private forecastService : ForecastService) { }
@@ -16,7 +16,6 @@ export class ForecastItemComponent implements OnInit  {
   ngOnInit() {
     this.forecastService.getForecast2(this.forecast.latitude, this.forecast.longitude).subscribe(
       (response: any) => {
-
         let data: Forecast = new Forecast('',
                                           response.currently.time , 
                                           response.currently.temperature, 
