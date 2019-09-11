@@ -20,7 +20,6 @@ export class ForecastListComponent implements OnInit {
     .subscribe(
       (res:any ) =>{
         for(let i = 0; i < res.data.length; i++){
-          //console.log(res.data[i]);
           this.forecastService.getLocations(res.data[i]).subscribe(
             (response: any) => {
               

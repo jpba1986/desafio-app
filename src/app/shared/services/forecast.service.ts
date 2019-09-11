@@ -44,7 +44,6 @@ export class ForecastService{
         return this.http.get('http://localhost:8080/forecast/getKey');        
     }
     getLocations(location: string){
-        //return this.locationsArray.slice();
         return this.http.get('http://localhost:8080/forecast/getLocations/'+ location);
     }
 
