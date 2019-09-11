@@ -4,5 +4,6 @@ class="list-group-item clearfix">
     <div class="pull-left">
         <h4 class="list-group-item-heading">{{ forecast.city }}</h4>
         <p class="list-group-item-text">Latitud: {{ forecast.latitude }}, Longitud:  {{ forecast.longitude }}</p>
+        <p class="list-group-item-text" *ngIf="forecast.hour > 0 && forecast.temp !==''">Hora: {{ forecast.hour}} , Temperatura: {{ forecast.temp}}</p>
     </div>
 </a>
