@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ForecastService } from 'src/app/shared/services/forecast.service';
+import { map } from 'rxjs/operators';
 import { Forecast } from 'src/app/shared/models/forecast.model';
+
 
 @Component({
   selector: 'app-forecast-list',
@@ -8,12 +10,25 @@ import { Forecast } from 'src/app/shared/models/forecast.model';
   styleUrls: ['./forecast-list.component.css']
 })
 export class ForecastListComponent implements OnInit {
-  forecasts: Forecast[];
+  forecasts: Forecast[] = [];
 
   constructor(private forecastService: ForecastService) { }
 
   ngOnInit() {
-    console.log( this.forecastService.getForecast2());
-  }
 
+    this.forecastService.getKeys()
+    .subscribe(
+      (res:any ) =>{
+        for(let i = 0; i < res.data.length; i++){
+          //console.log(res.data[i]);
+          this.forecastService.getLocations(res.data[i]).subscribe(
+            (response: any) => {
+              
+              return this.forecasts.push(new Forecast (response.data.city, '','',response.data.lat, response.data.lon ));
+            }
+          );
+        }
+      }
+    );
+  }
 }

@@ -5,6 +5,7 @@ export class Forecast{
     public temp: string;
     public latitude:number;
     public longitude: number;
+    public timezone: string;
 
     constructor(city:string , hour: string, temp:string, latitude: number, longitude: number){
         this.city= city;

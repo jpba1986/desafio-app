@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { ForecastComponent } from './pages/forecast/forecast.component';
 import { ForecastListComponent } from './pages/forecast/forecast-list/forecast-list.component';
 import { ForecastItemComponent } from './pages/forecast/forecast-item/forecast-item.component';
+import { HttpClientModule } from '@angular/common/http';
+
 
 const appRoutes: Routes=[
   { path: '', redirectTo: '/forecast', pathMatch:'full'},
@@ -22,7 +24,8 @@ const appRoutes: Routes=[
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

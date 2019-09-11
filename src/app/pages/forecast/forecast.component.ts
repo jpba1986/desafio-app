@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ForecastService } from 'src/app/shared/services/forecast.service';
 
 @Component({
   selector: 'app-forecast',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ForecastComponent implements OnInit {
 
-  constructor() { }
+  constructor(private forecastService: ForecastService) { }
 
   ngOnInit() {
+    this.forecastService.setStartlocations().subscribe();
   }
 
 }
