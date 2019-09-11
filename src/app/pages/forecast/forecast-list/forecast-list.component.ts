@@ -22,8 +22,7 @@ export class ForecastListComponent implements OnInit {
         for(let i = 0; i < res.data.length; i++){
           this.forecastService.getLocations(res.data[i]).subscribe(
             (response: any) => {
-              
-              return this.forecasts.push(new Forecast (response.data.city, '','',response.data.lat, response.data.lon ));
+              return this.forecasts.push(new Forecast (response.data.city, '','',response.data.lat, response.data.lon, response.data.id ));
             }
           );
         }
