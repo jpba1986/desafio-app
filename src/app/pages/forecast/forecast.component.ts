@@ -13,7 +13,7 @@ export class ForecastComponent implements OnInit {
   constructor(private forecastService: ForecastService) { }
 
   ngOnInit() {
-    this.forecastService.getKeys()
+    this.forecastService.getKey()
     .subscribe(
       (data: any) =>{
         if (data.data.length > 0){          
@@ -26,7 +26,7 @@ export class ForecastComponent implements OnInit {
   }
 
   onLoad(){
-        this.forecastService.setStartlocations().subscribe(
+        this.forecastService.postSetStartLocations().subscribe(
           () =>{
             this.isLoad = true;
           }

@@ -14,7 +14,7 @@ export class ForecastItemComponent implements OnInit  {
   constructor(private forecastService : ForecastService) { }
 
   ngOnInit() {
-    this.forecastService.getForecast2(this.forecast.latitude, this.forecast.longitude).subscribe(
+    this.forecastService.getForecastData(this.forecast.latitude, this.forecast.longitude).subscribe(
       (response: any) => {
         let data: Forecast = new Forecast('',
                                           response.currently.time , 
@@ -22,7 +22,7 @@ export class ForecastItemComponent implements OnInit  {
                                           response.latitude,
                                           response.longitude, 
                                           this.forecast.key );                                        
-        this.forecastService.storeForecast(data).subscribe(
+        this.forecastService.postDirections(data).subscribe(
           ()=>{
             setTimeout(() => {
               window.location.reload();

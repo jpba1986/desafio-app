@@ -16,7 +16,7 @@ export class ForecastListComponent implements OnInit {
 
   ngOnInit() {
 
-    this.forecastService.getKeys()
+    this.forecastService.getKey()
     .subscribe(
       (res:any ) =>{
         for(let i = 0; i < res.data.length; i++){
