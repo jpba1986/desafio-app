@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ForecastService } from 'src/app/shared/services/forecast.service';
+import { ErrorModel } from 'src/app/shared/models/error.model';
 
 @Component({
   selector: 'app-forecast',
@@ -12,17 +13,20 @@ export class ForecastComponent implements OnInit {
 
   constructor(private forecastService: ForecastService) { }
 
-  ngOnInit() {
-    this.forecastService.getKey()
-    .subscribe(
-      (data: any) =>{
-        if (data.data.length > 0){          
-          this.isLoad = true;
-        }        
-      }, error =>{
-        throw error;
-      });
-
+  ngOnInit() {   
+    if ((Math.floor(Math.random() * 10)) < 0.1 ) {
+      this.forecastService.postSaveError(new ErrorModel('How unfortunate! The API Request Failed'));
+    }else{
+      this.forecastService.getKey()
+      .subscribe(
+        (data: any) =>{
+          if (data.data.length > 0){          
+            this.isLoad = true;
+          }        
+        }, error =>{
+          throw error;
+        });
+    }
   }
 
   onLoad(){
