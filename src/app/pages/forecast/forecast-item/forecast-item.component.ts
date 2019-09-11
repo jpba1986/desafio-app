@@ -22,9 +22,14 @@ export class ForecastItemComponent implements OnInit  {
                                           response.latitude,
                                           response.longitude, 
                                           this.forecast.key );                                        
-        this.forecastService.storeForecast(data).subscribe();
+        this.forecastService.storeForecast(data).subscribe(
+          ()=>{
+            setTimeout(() => {
+              window.location.reload();
+            }, 10000);
+          }
+        );
       }
-    );
-    
+    );    
   }
 }

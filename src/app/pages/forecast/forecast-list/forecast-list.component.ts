@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ForecastService } from 'src/app/shared/services/forecast.service';
 import { Forecast } from 'src/app/shared/models/forecast.model';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -11,7 +12,7 @@ import { Forecast } from 'src/app/shared/models/forecast.model';
 export class ForecastListComponent implements OnInit {
   forecasts: Forecast[] = [];
 
-  constructor(private forecastService: ForecastService) { }
+  constructor(private forecastService: ForecastService,private router: Router) { }
 
   ngOnInit() {
 
@@ -21,7 +22,14 @@ export class ForecastListComponent implements OnInit {
         for(let i = 0; i < res.data.length; i++){
           this.forecastService.getLocations(res.data[i]).subscribe(
             (response: any) => {
-              return this.forecasts.push(new Forecast (response.data.city, response.data.hour, response.data.temp ,response.data.lat, response.data.lon, response.data.id ));
+              this.forecasts.push(new Forecast (response.data.city, 
+                                                response.data.hour, 
+                                                response.data.temp ,
+                                                response.data.lat, 
+                                                response.data.lon, 
+                                                response.data.id 
+                                                ));
+              this.router.navigate(['/forecast']);
             }
           );
         }
