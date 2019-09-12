@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, AfterContentInit } from '@angular/core';
 import { Forecast } from 'src/app/shared/models/forecast.model';
 import { ForecastService } from 'src/app/shared/services/forecast.service';
+import { ErrorModel } from 'src/app/shared/models/error.model';
 
 @Component({
   selector: 'app-forecast-item',
@@ -14,22 +15,27 @@ export class ForecastItemComponent implements OnInit  {
   constructor(private forecastService : ForecastService) { }
 
   ngOnInit() {
-    this.forecastService.getForecastData(this.forecast.latitude, this.forecast.longitude).subscribe(
-      (response: any) => {
-        let data: Forecast = new Forecast('',
-                                          response.currently.time , 
-                                          response.currently.temperature, 
-                                          response.latitude,
-                                          response.longitude, 
-                                          this.forecast.key );                                        
-        this.forecastService.postDirections(data).subscribe(
-          ()=>{
-            setTimeout(() => {
-              window.location.reload();
-            }, 10000);
+    if ((Math.floor(Math.random() * 10)/100) < 0.1 ) {     
+      this.forecastService.postSaveError( new ErrorModel('How unfortunate! The API Request Failed')).subscribe();
+      }else{
+        this.forecastService.getForecastData(this.forecast.latitude, this.forecast.longitude).subscribe(
+          (response: any) => {
+            console.log(response);
+            let data: Forecast = new Forecast('',
+                                              response.currently.time , 
+                                              response.currently.temperature, 
+                                              response.latitude,
+                                              response.longitude, 
+                                              this.forecast.key );                                        
+            this.forecastService.postDirections(data).subscribe(
+              ()=>{
+                setTimeout(() => {
+                 window.location.reload();
+                }, 300000);
+             }
+            );
           }
-        );
+        );  
       }
-    );    
   }
 }

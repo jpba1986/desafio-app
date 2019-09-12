@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Forecast } from '../models/forecast.model';
-import { HttpClient }  from '@angular/common/http';
+import { HttpClient, HttpHeaders }  from '@angular/common/http';
 import { ErrorModel } from '../models/error.model';
 
 @Injectable({ providedIn:'root'})
@@ -32,10 +32,9 @@ export class ForecastService{
         );
     }
 
-    postSaveError(error: ErrorModel ){
-        return this.http.post(
-            'http://localhost:8080/forecast/postSetStartLocations',error
-        );
+    postSaveError(err: ErrorModel ){
+        return this.http
+        .post('http://localhost:8080/forecast/postSaveError', err  );
     }
 
 }

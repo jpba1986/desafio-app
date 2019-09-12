@@ -14,8 +14,8 @@ export class ForecastComponent implements OnInit {
   constructor(private forecastService: ForecastService) { }
 
   ngOnInit() {   
-    if ((Math.floor(Math.random() * 10)) < 0.1 ) {
-      this.forecastService.postSaveError(new ErrorModel('How unfortunate! The API Request Failed'));
+    if ((Math.floor(Math.random() * 10)/100) < 0.1 ) {     
+    this.forecastService.postSaveError( new ErrorModel('How unfortunate! The API Request Failed')).subscribe();
     }else{
       this.forecastService.getKey()
       .subscribe(
@@ -30,11 +30,15 @@ export class ForecastComponent implements OnInit {
   }
 
   onLoad(){
+    if ((Math.floor(Math.random() * 10)/100) < 0.1 ) {     
+      this.forecastService.postSaveError( new ErrorModel('How unfortunate! The API Request Failed')).subscribe();
+      }else{
         this.forecastService.postSetStartLocations().subscribe(
           () =>{
             this.isLoad = true;
           }
         );
+      }
   }
 
 }
