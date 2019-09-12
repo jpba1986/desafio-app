@@ -1,0 +1,11 @@
+<h3>Lista</h3>
+<hr>
+<div class="row">
+    <div class="col col-xs-12">
+        <app-forecast-item
+        *ngFor="let f of forecasts"
+        [forecast]="f"
+        ></app-forecast-item>
+    </div>
+
+</div> 
