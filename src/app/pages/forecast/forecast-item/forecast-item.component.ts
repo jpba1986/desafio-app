@@ -1,7 +1,8 @@
-import { Component, OnInit, Input, AfterContentInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Forecast } from 'src/app/shared/models/forecast.model';
 import { ForecastService } from 'src/app/shared/services/forecast.service';
 import { ErrorModel } from 'src/app/shared/models/error.model';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-forecast-item',
@@ -16,7 +17,7 @@ export class ForecastItemComponent implements OnInit  {
 
   ngOnInit() {
     if ((Math.floor(Math.random() * 10)/100) < 0.1 ) {     
-      this.forecastService.postSaveError( new ErrorModel('How unfortunate! The API Request Failed')).subscribe();
+      this.forecastService.postSaveError( new ErrorModel(environment.ErrorMessage)).subscribe();
       }else{
         this.forecastService.getForecastData(this.forecast.latitude, this.forecast.longitude).subscribe(
           (response: any) => {
